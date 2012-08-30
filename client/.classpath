@@ -13,5 +13,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="D:/Other/Program Files/jboss-5.0.1.GA/client/jbossall-client.jar"/>
+	<classpathentry kind="lib" path="D:/Other/Program Files/jboss-5.0.1.GA/client/jboss-javaee.jar"/>
+	<classpathentry kind="lib" path="D:/Other/Program Files/jboss-5.0.1.GA/client/jnp-client.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
