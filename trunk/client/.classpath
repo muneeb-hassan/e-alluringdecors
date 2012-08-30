@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="D:/Other/Program Files/jboss-5.0.1.GA/client/jbossall-client.jar"/>
 	<classpathentry kind="lib" path="D:/Other/Program Files/jboss-5.0.1.GA/client/jboss-javaee.jar"/>
 	<classpathentry kind="lib" path="D:/Other/Program Files/jboss-5.0.1.GA/client/jnp-client.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/adserver"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
