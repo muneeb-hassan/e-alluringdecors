@@ -2,8 +2,10 @@
 <datasources>
 	<local-tx-datasource>
 		<jndi-name>SQLServer</jndi-name>
-		<connection-url>jdbc:sqlserver://localhost:1433;databaseName=AlluringDecors</connection-url>
-		<driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+		<connection-url>jdbc:sqlserver://localhost:1433;databaseName=AlluringDecors
+		</connection-url>
+		<driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver
+		</driver-class>
 		<user-name>sa</user-name>
 		<password>123456</password>
 		<min-pool-size>5</min-pool-size>
