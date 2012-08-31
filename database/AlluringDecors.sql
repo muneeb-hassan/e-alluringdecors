@@ -26,3 +26,4 @@ CREATE TABLE Acting(
 
 INSERT INTO Account(Username, [Password], FullName, Email, Acting) VALUES('admincp', '123456', N'Administrator', 'example@gmail.com', 2);
 INSERT INTO Acting(Username, [Add], [Delete], Edit, [View]) VALUES('admincp', 1, 1, 1, 1);
+45
