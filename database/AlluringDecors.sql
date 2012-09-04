@@ -32,7 +32,7 @@ CREATE TABLE Accounts(
 	Acting TINYINT NOT NULL DEFAULT 0 --0 user, 1 admin
 );
 
-INSERT INTO Account(Username, [Password], FullName, Email, Acting) VALUES('admincp', '123456', N'Administrator', 'example@gmail.com', 1);
+INSERT INTO Accounts(Username, [Password], FullName, Email, Acting) VALUES('admincp', '123456', N'Administrator', 'example@gmail.com', 1);
 
 
 CREATE TABLE [Services](
@@ -78,12 +78,12 @@ CREATE TABLE Feedbacks(
 	FeedbackId int identity(1,1) primary key,
 	Username VARCHAR(32) NOT NULL,
 	Title nvarchar(50) NOT NULL,
-	[Content] [nvarchar](300) NOT NULL
+	Content nvarchar(300) NOT NULL
 )
 GO
 
-CREATE TABLE Orders(
-	OrderId int identity(1,1) primary key,
+CREATE TABLE Bills(
+	BillId int identity(1,1) primary key,
 	Username VARCHAR(32) NOT NULL,
 	ProjectId int NOT NULL
 )
@@ -92,7 +92,7 @@ GO
 CREATE TABLE ServiceDetails(
 	SDetailId int identity(1,1) primary key,
 	ServiceId int NOT NULL,
-	OrderId int NOT NULL,
+	BillId int NOT NULL,
 	Name NVARCHAR(50),
 	Price FLOAT, -- TINH TIEN usd
 	Quantity int NOT NULL,
@@ -102,18 +102,18 @@ GO
 
 CREATE TABLE PaymentDetails(
 	PDetailId int identity(1,1) primary key,
-	OrderId int NOT NULL,
+	BillId int NOT NULL,
 	[Date] DATETIME NOT NULL,
 	PayAmount FLOAT NOT NULL, --So tien dua
 	TotalAmount FLOAT NOT NULL
 )
 GO
 
-ALTER TABLE PaymentDetails ADD CONSTRAINT FK_PaymentDetails_Orders FOREIGN KEY (OrderId) REFERENCES Orders(OrderId) ON DELETE CASCADE;
-ALTER TABLE ServiceDetails ADD CONSTRAINT FK_ServiceDetails_Orders FOREIGN KEY (OrderId) REFERENCES Orders(OrderId) ON DELETE CASCADE;
+ALTER TABLE PaymentDetails ADD CONSTRAINT FK_PaymentDetails_Bills FOREIGN KEY (BillId) REFERENCES Bills(BillId) ON DELETE CASCADE;
+ALTER TABLE ServiceDetails ADD CONSTRAINT FK_ServiceDetails_Bills FOREIGN KEY (BillId) REFERENCES Bills(BillId) ON DELETE CASCADE;
 ALTER TABLE ServiceDetails ADD CONSTRAINT FK_ServiceDetails_Services FOREIGN KEY (ServiceId) REFERENCES [Services](ServiceId) ON DELETE CASCADE;
-ALTER TABLE Orders ADD CONSTRAINT FK_Orders_Projects FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE;
-ALTER TABLE Orders ADD CONSTRAINT FK_Orders_Accounts FOREIGN KEY (Username) REFERENCES Accounts(Username) ON DELETE CASCADE;
+ALTER TABLE Bills ADD CONSTRAINT FK_Bills_Projects FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE;
+ALTER TABLE Bills ADD CONSTRAINT FK_Bills_Accounts FOREIGN KEY (Username) REFERENCES Accounts(Username) ON DELETE CASCADE;
 ALTER TABLE Feedbacks ADD CONSTRAINT FK_Feedbacks_Accounts FOREIGN KEY (Username) REFERENCES Accounts(Username) ON DELETE CASCADE;
 ALTER TABLE [ProjectServices] ADD CONSTRAINT FK_ProjectServices_Services FOREIGN KEY (ServiceId) REFERENCES [Services](ServiceId) ON DELETE CASCADE;
 ALTER TABLE [ProjectServices] ADD CONSTRAINT FK_ProjectServices_Projects FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE;
