@@ -65,7 +65,7 @@ CREATE TABLE Projects(
 	Name nvarchar(50) NOT NULL,
 	[Address] nvarchar(50) NOT NULL,
 	ImgUrlThumb VARCHAR(200) NOT NULL,
-	[Image] XML (CONTENT ImgViewSchema) NOT NULL DEFAULT '<?xml version="1.0"?><root></root>',
+	[Images] XML (CONTENT ImgViewSchema) NOT NULL DEFAULT '<?xml version="1.0"?><root></root>',
 	[Description] nvarchar(300),
 	[DateStart] DATETIME NOT NULL,
 	[Status] TINYINT NOT NULL DEFAULT 0, -- 0 dang tien hanh, 1 da tien hanh, 2 hoan thanh 
