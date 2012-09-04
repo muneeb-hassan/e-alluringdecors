@@ -18,8 +18,8 @@ CREATE TABLE Account(
 INSERT INTO Account(Username, [Password], FullName, Email, Acting) VALUES('admincp', '123456', N'Administrator', 'example@gmail.com', 1);
 
 
-CREATE TABLE ttkhachhang(
-	id int primary key,
+CREATE TABLE customer(
+	idcus int primary key,
 	[password] nvarchar(50) NOT NULL,
 	name nvarchar(50) NOT NULL,
 	[address] nvarchar(50) NOT NULL,
@@ -68,8 +68,16 @@ CREATE TABLE feedback(
 )
 GO
 
-CREATE TABLE [dbo].[admin](
+CREATE TABLE [admin](
 	[admin] [nvarchar](50) NOT NULL,
-	[pass] [nvarchar](50) NOT NULL
+	pass [nvarchar](50) NOT NULL
 )
 GO
+
+CREATE TABLE bill(
+	idbill int primary key,
+	cusid int NOT NULL,
+	projectid int NOT NULL,
+	total int NOT NULL,
+	status int NOT NULL
+)
