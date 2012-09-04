@@ -20,7 +20,7 @@ AS N'<?xml version="1.0" encoding="utf-16"?>
 </xs:schema>'
 GO
 
-CREATE TABLE Account(
+CREATE TABLE Accounts(
 	Username VARCHAR(32) PRIMARY KEY,
 	[Password] VARCHAR(32) NOT NULL,
 	FullName NVARCHAR(100) NOT NULL,
@@ -113,7 +113,7 @@ ALTER TABLE PaymentDetails ADD CONSTRAINT FK_PaymentDetails_Orders FOREIGN KEY (
 ALTER TABLE ServiceDetails ADD CONSTRAINT FK_ServiceDetails_Orders FOREIGN KEY (OrderId) REFERENCES Orders(OrderId) ON DELETE CASCADE;
 ALTER TABLE ServiceDetails ADD CONSTRAINT FK_ServiceDetails_Services FOREIGN KEY (ServiceId) REFERENCES [Services](ServiceId) ON DELETE CASCADE;
 ALTER TABLE Orders ADD CONSTRAINT FK_Orders_Projects FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE;
-ALTER TABLE Orders ADD CONSTRAINT FK_Orders_Account FOREIGN KEY (Username) REFERENCES Account(Username) ON DELETE CASCADE;
-ALTER TABLE Feedbacks ADD CONSTRAINT FK_Feedbacks_Account FOREIGN KEY (Username) REFERENCES Account(Username) ON DELETE CASCADE;
+ALTER TABLE Orders ADD CONSTRAINT FK_Orders_Accounts FOREIGN KEY (Username) REFERENCES Accounts(Username) ON DELETE CASCADE;
+ALTER TABLE Feedbacks ADD CONSTRAINT FK_Feedbacks_Accounts FOREIGN KEY (Username) REFERENCES Accounts(Username) ON DELETE CASCADE;
 ALTER TABLE [ProjectServices] ADD CONSTRAINT FK_ProjectServices_Services FOREIGN KEY (ServiceId) REFERENCES [Services](ServiceId) ON DELETE CASCADE;
 ALTER TABLE [ProjectServices] ADD CONSTRAINT FK_ProjectServices_Projects FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE;
