@@ -3,23 +3,6 @@ GO
 USE AlluringDecors
 GO
 
-CREATE XML SCHEMA COLLECTION ImgViewSchema
-AS N'<?xml version="1.0" encoding="utf-16"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="root">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element maxOccurs="unbounded" name="img">
-          <xs:complexType>
-            <xs:attribute name="src" type="xs:string" use="required" />
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-</xs:schema>'
-GO
-
 CREATE TABLE Accounts(
 	Username VARCHAR(32) PRIMARY KEY,
 	[Password] VARCHAR(32) NOT NULL,
@@ -65,12 +48,18 @@ CREATE TABLE Projects(
 	Name nvarchar(50) NOT NULL,
 	[Address] nvarchar(50) NOT NULL,
 	ImgUrlThumb VARCHAR(200) NOT NULL,
-	[Images] XML (CONTENT ImgViewSchema) NOT NULL DEFAULT '<?xml version="1.0"?><root></root>',
 	[Description] nvarchar(300),
 	[DateStart] DATETIME NOT NULL,
 	[Status] TINYINT NOT NULL DEFAULT 0, -- 0 dang tien hanh, 1 da tien hanh, 2 hoan thanh 
 	[DateComplete] DATETIME,
 	ProType int NOT NULL DEFAULT 0 -- 0 home, 1 hall..., 2 restaurent hotel, 3 office
+)
+GO
+
+CREATE TABLE Images(
+	ImageId INT identity(1,1) primary key,
+	ProjectId INT NOT NULL,
+	URL VARCHAR(200) NOT NULL
 )
 GO
 
@@ -117,3 +106,4 @@ ALTER TABLE Bills ADD CONSTRAINT FK_Bills_Accounts FOREIGN KEY (Username) REFERE
 ALTER TABLE Feedbacks ADD CONSTRAINT FK_Feedbacks_Accounts FOREIGN KEY (Username) REFERENCES Accounts(Username) ON DELETE CASCADE;
 ALTER TABLE [ProjectServices] ADD CONSTRAINT FK_ProjectServices_Services FOREIGN KEY (ServiceId) REFERENCES [Services](ServiceId) ON DELETE CASCADE;
 ALTER TABLE [ProjectServices] ADD CONSTRAINT FK_ProjectServices_Projects FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE;
+ALTER TABLE Images ADD CONSTRAINT FK_Images_Projects FOREIGN KEY (ProjectId) REFERENCES Projects(ProjectId) ON DELETE CASCADE;
